@@ -10,6 +10,7 @@ public class RootSegment : MonoBehaviour
 	}
 
 	public bool IsGrowing { get { return isGrowing; } }
+	public int Depth { get; set; }
 
 	public Transform tip;
 	private bool isGrowing = true;

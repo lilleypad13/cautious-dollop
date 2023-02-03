@@ -404,12 +404,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fcbbdbc821ee9448b4d5295a340d0ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  segmentLength: 0.5
-  growthSpeed: 0.4
-  segmentsBetweenBranches: {x: 3, y: 8}
-  angleVariance: 30
-  branchAngleVariance: 80
+  segmentLength: 0.25
+  growthSpeed: 0.2
+  segmentsBetweenBranches: {x: 5, y: 15}
+  angleVariance: 10
+  branchAngleVarianceMin: 30
+  branchAngleVarianceMax: 45
   segmentPrefab: {fileID: 2585654343188361979, guid: 61a77ff0c4f7eaf448acbd873b5f39a1, type: 3}
+  branchChanceDecay: 0.5
 --- !u!4 &1264867636
 Transform:
   m_ObjectHideFlags: 0
