@@ -12,8 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f395f16e3fb2aa442a4d69a1af87ab01, type: 3}
   m_Name: InputData
   m_EditorClassIdentifier: 
-  standardRadius: 1.1
-  standardPowerPercent: 0.5
-  focusedRadius: 0.5
-  focusedPowerPercent: 1.5
-  focusedSlowPercent: 0.9
+  standardInput:
+    radius: 1.1
+    speedIncrease: 0.25
+    speedDecrease: 0
+    curveLimit: 25
+    curveSpeed: 0.75
+  focusedInput:
+    radius: 0.5
+    speedIncrease: 0.6
+    speedDecrease: 0.5
+    curveLimit: 30
+    curveSpeed: 1.5

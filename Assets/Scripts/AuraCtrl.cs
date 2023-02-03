@@ -11,7 +11,7 @@ public class AuraCtrl : MonoBehaviour
 
 	private void OnEnable() {
 		//Data stores radius, but scale is diameter
-		transform.localScale = Vector3.one * 2 * data.standardRadius;
+		transform.localScale = Vector3.one * 2 * data.standardInput.radius;
 		InputController.CurrentMousePosition += GetMousePos;
 	}
 
@@ -22,10 +22,10 @@ public class AuraCtrl : MonoBehaviour
 	private void GetMousePos(Vector2 mousePos, MouseInput inputType) {
 		if(inputType == MouseInput.LeftClickDown) {
 			isFocused = true;
-			transform.localScale = Vector3.one * 2 * data.focusedRadius;
+			transform.localScale = Vector3.one * 2 * data.focusedInput.radius;
 		} else if (inputType == MouseInput.None && isFocused) {
 			isFocused = false;
-			transform.localScale = Vector3.one * 2 * data.standardRadius;
+			transform.localScale = Vector3.one * 2 * data.standardInput.radius;
 		}
 		tempPos = Camera.main.ScreenToWorldPoint(mousePos);
 		transform.position = tempPos - (Vector3.forward * tempPos.z);

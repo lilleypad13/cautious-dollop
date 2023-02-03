@@ -18,7 +18,7 @@ public class RootCtrl : MonoBehaviour
 	public RootSegment segmentPrefab;
 	public float branchChanceDecay;
 
-	private bool isFocusing = false;
+	private InputParameters currentInputParams;
 
 	private float mod = 1;
 	private List<RootSegment> rootList = new List<RootSegment>();
@@ -30,6 +30,7 @@ public class RootCtrl : MonoBehaviour
 	int nextBranch = 0;
 
 	private void Start() {
+		currentInputParams = data.standardInput;
 		rootList.Add(CreateFirstSegment(transform.position));
 	}
 
@@ -44,21 +45,24 @@ public class RootCtrl : MonoBehaviour
 	private void Update() {
 		foreach (var root in rootList) {
 			if (RootInRange(root)) {
-				mod = 1 + (isFocusing ? data.focusedPowerPercent : data.standardPowerPercent);
-				root.rend.color = Color.red;
-				root.BendTowards(mousePos, 22.5f, 0f);
-			} else if (isFocusing) {
-				mod = Mathf.Max(0f, 1 - data.focusedSlowPercent);
-				root.rend.color = Color.blue;
+				mod = 1 + currentInputParams.speedIncrease;
+				root.BendTowards(mousePos, currentInputParams.curveLimit, currentInputParams.curveSpeed);
 			} else {
-				mod = 1;
-				root.rend.color = Color.white;
+				mod = Mathf.Max(0f, 1 - currentInputParams.speedDecrease);
 			}
+
+			//if(mod > 1) {
+			//	root.rend.color = Color.red;
+			//} else if (mod == 1) {
+			//	root.rend.color = Color.white;
+			//} else {
+			//	root.rend.color = Color.blue;
+			//}
 
 			root.Length += growthSpeed * Time.deltaTime * mod;
 			if (root.Length >= segmentLength) {
 				root.EnableGrowth(false);
-				root.rend.color = Color.white;
+				//root.rend.color = Color.white;
 				localSegmentsBetween = BranchRange(root.Depth);
 				if (root.transform.parent.childCount >= localSegmentsBetween.x) {
 					if (Random.Range(0f, 1f) <= BranchChance(localSegmentsBetween, root.transform.parent.childCount)) {
@@ -145,20 +149,17 @@ public class RootCtrl : MonoBehaviour
 
 	private void ToggleFocus(Vector2 mousePos, MouseInput inputType) {
 		if (inputType == MouseInput.LeftClickDown) {
-			isFocusing = true;
-		} else if (inputType == MouseInput.None) {
-			if (isFocusing) {
-				isFocusing = false;
-			}
+			currentInputParams = data.focusedInput;
+		} else if (inputType == MouseInput.None && currentInputParams == data.focusedInput) {
+			currentInputParams = data.standardInput;
 		}
 		this.mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 	}
 
 	private bool RootInRange(RootSegment root) {
-		float radius = isFocusing ? data.focusedRadius : data.standardRadius;
 		//Need to detect if any part is within the radius, not just the ends
 		Vector2 pointOnLine = ClosestPointOnLine(root.transform.position, root.tip.position, mousePos);
-		return Vector2.Distance(mousePos, pointOnLine) <= radius;
+		return Vector2.Distance(mousePos, pointOnLine) <= currentInputParams.radius;
 	}
 
 	private Vector2 ClosestPointOnLine(Vector2 endpointOne, Vector2 endpointTwo, Vector2 pointToCheck) {
@@ -181,7 +182,7 @@ public class RootCtrl : MonoBehaviour
 
 		private void OnSceneGUI() {
 			if(script.mousePos != null) {
-				float radius = script.isFocusing ? script.data.focusedRadius : script.data.standardRadius;
+				float radius = script.currentInputParams.radius;
 				Handles.color = Color.black;
 				Handles.DrawSolidArc(script.mousePos, Vector3.forward, Vector3.up, 360, .1f);
 				Handles.color = Color.yellow;

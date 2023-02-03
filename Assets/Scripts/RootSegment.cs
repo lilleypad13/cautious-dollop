@@ -22,6 +22,7 @@ public class RootSegment : MonoBehaviour
 
 	public void SetInitialRotation(float angle) {
 		initialRot = angle;
+		currentAngle = angle;
 	}
 
 	public void BendTowards(Vector3 targetPos, float angleLimit, float speed) {
@@ -31,20 +32,12 @@ public class RootSegment : MonoBehaviour
 		float upperLimit = angleLimit + initialRot;
 
 		angle += 90;
-		//Debug.Log($"Angle {angle}, clamping to ({lowerLimit}, {upperLimit})");
 		if(angle > 180 + initialRot) { angle = lowerLimit; }
 		angle = Mathf.Clamp(angle, lowerLimit, upperLimit);
+		angle = Mathf.Lerp(currentAngle, angle, Time.deltaTime * speed);
 
 		currentAngle = angle;
 		transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-		//if(transform.eulerAngles.z + initialRot > angleLimit + initialRot && transform.eulerAngles.z + initialRot < 360 - angleLimit - initialRot) {
-		//	transform.eulerAngles = new Vector3(0f, 0f, Mathf.Clamp(transform.eulerAngles.z, -angleLimit + initialRot, angleLimit + initialRot));
-		//} else if (transform.eulerAngles.z + initialRot > 360 - angleLimit - initialRot) {
-		//	transform.eulerAngles = new Vector3(0f, 0f, Mathf.Clamp(transform.eulerAngles.z, 360 - angleLimit - initialRot, 360));
-		//} 
-		//else {
-		//	Debug.Log($"{transform.eulerAngles.z} within range ({-angleLimit + initialRot}, {angleLimit + initialRot})");
-		//}
 	}
 
 	public void EnableGrowth(bool enable) {
