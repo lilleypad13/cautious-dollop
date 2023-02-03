@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,18 +33,21 @@ public class TestInputReceiver : MonoBehaviour
         InputController.CurrentMousePosition -= RotateLineRenderer;
     }
 
-    public void DoSomething(Vector2 vector, InputStrength strength)
+    public void DoSomething(Vector2 vector, MouseInput strength)
     {
         sprite.transform.position = vector;
         Vector3 imageScale = defaultIndicatorScale;
 
         switch (strength)
         {
-            case InputStrength.Standard:
+            case MouseInput.None:
                 imageScale = defaultIndicatorScale;
                 break;
-            case InputStrength.Strong:
+            case MouseInput.LeftClick:
                 imageScale = strongIndicatorScale;
+                break;
+            case MouseInput.LeftClickDown:
+                Debug.Log("Just clicked mouse for icon");
                 break;
             default:
                 imageScale = defaultIndicatorScale;
@@ -55,7 +57,7 @@ public class TestInputReceiver : MonoBehaviour
         sprite.transform.localScale = imageScale;
     }
 
-    public void RotateLineRenderer(Vector2 vector, InputStrength strength)
+    public void RotateLineRenderer(Vector2 vector, MouseInput strength)
     {
         // Add Line Renderer points
         Vector2 totalDirection = vector - (Vector2)targetCamera.WorldToScreenPoint(targetLine.GetPosition(0)); // probably needs to translate to mouse position first
@@ -66,11 +68,14 @@ public class TestInputReceiver : MonoBehaviour
 
         switch (strength)
         {
-            case InputStrength.Standard:
+            case MouseInput.None:
                 currentLength = defaultSegmentLength;
                 break;
-            case InputStrength.Strong:
+            case MouseInput.LeftClick:
                 currentLength = strongSegmentLength;
+                break;
+            case MouseInput.LeftClickDown:
+                Debug.Log("Just clicked mouse for line renderer");
                 break;
             default:
                 currentLength = defaultSegmentLength;

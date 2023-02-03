@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum InputStrength
+public enum MouseInput
 {
-    Standard,
-    Strong
+    None,
+    LeftClick, // While Held
+    LeftClickDown
 }
 
 public class InputController : MonoBehaviour
@@ -14,19 +15,23 @@ public class InputController : MonoBehaviour
     // Emit an event with:
     // Position
     // Strength
-    public static event Action<Vector2, InputStrength> CurrentMousePosition;
+    public static event Action<Vector2, MouseInput> CurrentMousePosition;
 
 
 
     private void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            CurrentMousePosition?.Invoke(Input.mousePosition, InputStrength.Strong);
+            CurrentMousePosition?.Invoke(Input.mousePosition, MouseInput.LeftClickDown);
+        }
+        else if (Input.GetMouseButton(0))
+        {
+            CurrentMousePosition?.Invoke(Input.mousePosition, MouseInput.LeftClick);
         }
         else
         {
-            CurrentMousePosition?.Invoke(Input.mousePosition, InputStrength.Standard);
+            CurrentMousePosition?.Invoke(Input.mousePosition, MouseInput.None);
         }
     }
 }
