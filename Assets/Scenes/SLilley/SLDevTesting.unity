@@ -270,10 +270,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 959334993}
   defaultIndicatorScale: {x: 1, y: 1, z: 1}
-  strongIndicatorScale: {x: 5, y: 5, z: 5}
+  strongIndicatorScale: {x: 3, y: 3, z: 3}
   targetCamera: {fileID: 563762519}
   targetLine: {fileID: 994706489}
-  segmentLength: 3
+  currentLength: 0
+  defaultSegmentLength: 3
+  strongSegmentLength: 6
 --- !u!1 &563762517
 GameObject:
   m_ObjectHideFlags: 0

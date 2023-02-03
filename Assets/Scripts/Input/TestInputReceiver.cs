@@ -12,7 +12,15 @@ public class TestInputReceiver : MonoBehaviour
     public Camera targetCamera;
 
     public LineRenderer targetLine;
-    public float segmentLength = 3.0f;
+    public float currentLength;
+    public float defaultSegmentLength = 3.0f;
+    public float strongSegmentLength = 6.0f;
+
+
+    private void Awake()
+    {
+        currentLength = defaultSegmentLength;
+    }
 
     private void OnEnable()
     {
@@ -52,8 +60,21 @@ public class TestInputReceiver : MonoBehaviour
         // Add Line Renderer points
         Vector2 totalDirection = vector - (Vector2)targetCamera.WorldToScreenPoint(targetLine.GetPosition(0)); // probably needs to translate to mouse position first
         Vector2 direction = totalDirection.normalized;
-        Vector2 lineTarget = (Vector2)targetLine.GetPosition(0) + direction * segmentLength;
+        Vector2 lineTarget = (Vector2)targetLine.GetPosition(0) + direction * currentLength;
 
         targetLine.SetPosition(1, lineTarget);
+
+        switch (strength)
+        {
+            case InputStrength.Standard:
+                currentLength = defaultSegmentLength;
+                break;
+            case InputStrength.Strong:
+                currentLength = strongSegmentLength;
+                break;
+            default:
+                currentLength = defaultSegmentLength;
+                break;
+        }
     }
 }
