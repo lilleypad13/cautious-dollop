@@ -46,6 +46,7 @@ public class RootCtrl : MonoBehaviour
 			if (RootInRange(root)) {
 				mod = 1 + (isFocusing ? data.focusedPowerPercent : data.standardPowerPercent);
 				root.rend.color = Color.red;
+				root.BendTowards(mousePos, 22.5f, 0f);
 			} else if (isFocusing) {
 				mod = Mathf.Max(0f, 1 - data.focusedSlowPercent);
 				root.rend.color = Color.blue;
@@ -75,23 +76,25 @@ public class RootCtrl : MonoBehaviour
 	}
 
 	private RootSegment CreateFirstSegment(Vector3 startPos) {
+		float angle = Random.Range(-angleVariance, angleVariance);
 		RootSegment newSegment = Instantiate(segmentPrefab,
 			startPos,
-			Quaternion.AngleAxis(Random.Range(-angleVariance, angleVariance),
-			Vector3.forward),
+			Quaternion.AngleAxis(angle, Vector3.forward),
 			BranchParent(nextBranch));
 		nextBranch++;
+		newSegment.SetInitialRotation(angle);
 		newSegment.Depth = 0;
 		return newSegment;
 	}
 
 	private RootSegment CreateSegment(RootSegment parent) {
-		Vector3 angle = Quaternion.AngleAxis(Random.Range(-angleVariance, angleVariance), parent.transform.forward).eulerAngles + parent.transform.eulerAngles;
+		float angle = Random.Range(-angleVariance, angleVariance);
 		RootSegment newSegment = Instantiate(segmentPrefab,
 			parent.tip.position,
-			Quaternion.Euler(angle),
+			Quaternion.Euler(Quaternion.AngleAxis(angle, parent.transform.forward).eulerAngles + parent.transform.eulerAngles),
 			parent.transform.parent);
 		newSegment.Depth = parent.Depth;
+		newSegment.SetInitialRotation(parent.Angle + angle);
 		return newSegment;
 	}
 
@@ -103,6 +106,7 @@ public class RootCtrl : MonoBehaviour
 			BranchParent(nextBranch));
 		branch1.Depth = parent.Depth + 1;
 		nextBranch++;
+		branch1.SetInitialRotation(parent.Angle + angle);
 		addList.Add(branch1);
 
 		RootSegment branch2 = Instantiate(segmentPrefab,
@@ -111,6 +115,7 @@ public class RootCtrl : MonoBehaviour
 			BranchParent(nextBranch));
 		branch2.Depth = parent.Depth + 1;
 		nextBranch++;
+		branch2.SetInitialRotation(parent.Angle - angle);
 		addList.Add(branch2);
 	}
 
