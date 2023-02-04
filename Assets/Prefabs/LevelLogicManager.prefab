@@ -72,9 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d50b3518cc0dc14283d0e5f137d4485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxEnergy: 100
-  drainRate: 15
-  refillRate: 8
+  data: {fileID: 11400000, guid: b311b3bff70c7b843bc2d99849c503ce, type: 2}
 --- !u!1 &5417613091428059123
 GameObject:
   m_ObjectHideFlags: 0

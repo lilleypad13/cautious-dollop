@@ -9,20 +9,18 @@ public class EnergyMgr : MonoBehaviour
 	public static Action EnergyDepleted;
 	public static Action<float, float> SetEnergyBarSize;
 
-	public int maxEnergy;
-	public int drainRate;
-	public int refillRate;
+	public EnergyData data;
 	
 	private float currentEnergy;
 	private bool usingEnergy = false;
 
 	private void Start() {
-		currentEnergy = maxEnergy;
+		currentEnergy = data.maxEnergy;
 	}
 
 	private void OnEnable() {
 		InputController.CurrentMousePosition += RegisterMouseClick;
-		SetEnergyBarSize?.Invoke(maxEnergy, currentEnergy);
+		SetEnergyBarSize?.Invoke(data.maxEnergy, currentEnergy);
 	}
 
 	private void OnDisable() {
@@ -31,17 +29,17 @@ public class EnergyMgr : MonoBehaviour
 
 	private void Update() {
 		if (usingEnergy && currentEnergy > 0) {
-			currentEnergy -= drainRate * Time.deltaTime;
+			currentEnergy -= data.drainRate * Time.deltaTime;
 			currentEnergy = Mathf.Max(0, currentEnergy);
 			if(currentEnergy == 0) {
 				OutOfEnergy();
 			}
-		} else if (currentEnergy < maxEnergy) {
-			currentEnergy += refillRate * Time.deltaTime;
-			currentEnergy = Mathf.Min(maxEnergy, currentEnergy);
+		} else if (currentEnergy < data.maxEnergy) {
+			currentEnergy += data.refillRate * Time.deltaTime;
+			currentEnergy = Mathf.Min(data.maxEnergy, currentEnergy);
 		}
 
-		SetEnergyBarSize?.Invoke(maxEnergy, currentEnergy);
+		SetEnergyBarSize?.Invoke(data.maxEnergy, currentEnergy);
 	}
 
 	private void OutOfEnergy() {
