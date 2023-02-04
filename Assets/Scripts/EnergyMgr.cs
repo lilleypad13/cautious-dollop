@@ -11,15 +11,19 @@ public class EnergyMgr : MonoBehaviour
 	public int maxEnergy;
 	public int drainRate;
 	public int refillRate;
-	public Slider energyBar;
+	public RectTransform energyBar;
+	public RectTransform backing;
 
+	private float sizeAtMax;
+	private float sizePerUnit;
 	private float currentEnergy;
 	private bool usingEnergy = false;
 
 	private void Start() {
+		sizeAtMax = backing.rect.width;
+		sizePerUnit = sizeAtMax / maxEnergy;
 		currentEnergy = maxEnergy;
-		energyBar.maxValue = maxEnergy;
-		energyBar.value = maxEnergy;
+		energyBar.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, sizeAtMax);
 	}
 
 	private void OnEnable() {
@@ -46,7 +50,8 @@ public class EnergyMgr : MonoBehaviour
 	}
 
 	private void UpdateEnergyBar() {
-		energyBar.value = currentEnergy;
+		//If currentEnergy is 0, it throws an Invalid AABB inAABB error
+		energyBar.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, Mathf.Max(currentEnergy, 1) * sizePerUnit);
 	}
 
 	private void OutOfEnergy() {
