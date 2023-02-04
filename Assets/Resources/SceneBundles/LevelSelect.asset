@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: LevelSelect
   m_EditorClassIdentifier: 
   scenesToLoad:
-  - LevelSelect
-  sceneToSetActive: LevelSelect
+  - LevelSelect_Korth
+  sceneToSetActive: LevelSelect_Korth
