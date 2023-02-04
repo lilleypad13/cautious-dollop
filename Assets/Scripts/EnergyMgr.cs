@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class EnergyMgr : MonoBehaviour
 {
+	public static Action EnergyDepleted;
+
 	public int maxEnergy;
 	public int drainRate;
 	public int refillRate;
@@ -28,9 +31,12 @@ public class EnergyMgr : MonoBehaviour
 	}
 
 	private void Update() {
-		if (usingEnergy) {
+		if (usingEnergy && currentEnergy > 0) {
 			currentEnergy -= drainRate * Time.deltaTime;
 			currentEnergy = Mathf.Max(0, currentEnergy);
+			if(currentEnergy == 0) {
+				OutOfEnergy();
+			}
 		} else if (currentEnergy < maxEnergy) {
 			currentEnergy += refillRate * Time.deltaTime;
 			currentEnergy = Mathf.Min(maxEnergy, currentEnergy);
@@ -41,6 +47,11 @@ public class EnergyMgr : MonoBehaviour
 
 	private void UpdateEnergyBar() {
 		energyBar.value = currentEnergy;
+	}
+
+	private void OutOfEnergy() {
+		usingEnergy = false;
+		EnergyDepleted?.Invoke();
 	}
 
 	private void RegisterMouseClick(Vector2 mousePos, MouseInput inputType) {

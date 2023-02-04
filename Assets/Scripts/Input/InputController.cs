@@ -17,9 +17,15 @@ public class InputController : MonoBehaviour
     // Strength
     public static event Action<Vector2, MouseInput> CurrentMousePosition;
 
+	private void OnEnable() {
+		EnergyMgr.EnergyDepleted += SendNoEnergyEvent;
+	}
 
+	private void OnDisable() {
+		EnergyMgr.EnergyDepleted -= SendNoEnergyEvent;
+	}
 
-    private void Update()
+	private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -34,4 +40,8 @@ public class InputController : MonoBehaviour
             CurrentMousePosition?.Invoke(Input.mousePosition, MouseInput.None);
         }
     }
+
+	private void SendNoEnergyEvent() {
+		CurrentMousePosition?.Invoke(Input.mousePosition, MouseInput.None);
+	}
 }

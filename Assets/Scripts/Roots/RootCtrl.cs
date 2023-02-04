@@ -35,10 +35,12 @@ public class RootCtrl : MonoBehaviour
 
 	private void OnEnable() {
 		InputController.CurrentMousePosition += ToggleFocus;
+		PickupMgr.AllPickupsCollected += WinGame;
 	}
 
 	private void OnDisable() {
 		InputController.CurrentMousePosition -= ToggleFocus;
+		PickupMgr.AllPickupsCollected -= WinGame;
 	}
 
 	private void Update() {
@@ -75,6 +77,11 @@ public class RootCtrl : MonoBehaviour
 
 	private void LoseGame() {
 		Debug.Log("You Lose!");
+		gameOver = true;
+	}
+
+	private void WinGame() {
+		Debug.Log("You Win!");
 		gameOver = true;
 	}
 
