@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5417613090853287370}
   - component: {fileID: 5417613090853287371}
+  - component: {fileID: 1822058896567607855}
+  - component: {fileID: 5934880674555774961}
   m_Layer: 0
   m_Name: LevelLogicManager
   m_TagString: Untagged
@@ -46,6 +48,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   completingThisLevelProgression: 0
+--- !u!114 &1822058896567607855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5417613090853287221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49108f3351913a14399d1ba22e9cd767, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5934880674555774961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5417613090853287221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d50b3518cc0dc14283d0e5f137d4485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxEnergy: 100
+  drainRate: 15
+  refillRate: 8
 --- !u!1 &5417613091428059123
 GameObject:
   m_ObjectHideFlags: 0
