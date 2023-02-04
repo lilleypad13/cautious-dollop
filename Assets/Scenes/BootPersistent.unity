@@ -167,7 +167,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.675
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -285,11 +285,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: b4e03b819912ca746b68c6610bd537b3, type: 3}
   - audioName: Woodwinds
     clip: {fileID: 8300000, guid: fb00ea2db68b94943a2537f68df56678, type: 3}
-  sfxSounds:
-  - audioName: RPG_Menu_Cancel_01
-    clip: {fileID: 8300000, guid: 7e58c1718e011c847949792efd486a17, type: 3}
-  - audioName: RPG_Menu_Confirm_01
-    clip: {fileID: 8300000, guid: dca3084cb66e8824bab682c584bec504, type: 3}
+  sfxSounds: []
   musicSource: {fileID: 920330318}
   sfxSource: {fileID: 57034770}
 --- !u!4 &301664048
@@ -400,7 +396,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.195
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -528,4 +524,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e7830f8f48ae9a4cb8f048227fc509e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLevelProgress: 3
+  currentLevelProgress: 0
