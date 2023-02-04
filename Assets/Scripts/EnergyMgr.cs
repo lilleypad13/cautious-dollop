@@ -7,27 +7,22 @@ using System;
 public class EnergyMgr : MonoBehaviour
 {
 	public static Action EnergyDepleted;
+	public static Action<float, float> SetEnergyBarSize;
 
 	public int maxEnergy;
 	public int drainRate;
 	public int refillRate;
-	public RectTransform energyBar;
-	public RectTransform backing;
-
-	private float sizeAtMax;
-	private float sizePerUnit;
+	
 	private float currentEnergy;
 	private bool usingEnergy = false;
 
 	private void Start() {
-		sizeAtMax = backing.rect.width;
-		sizePerUnit = sizeAtMax / maxEnergy;
 		currentEnergy = maxEnergy;
-		energyBar.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, sizeAtMax);
 	}
 
 	private void OnEnable() {
 		InputController.CurrentMousePosition += RegisterMouseClick;
+		SetEnergyBarSize?.Invoke(maxEnergy, currentEnergy);
 	}
 
 	private void OnDisable() {
@@ -46,12 +41,7 @@ public class EnergyMgr : MonoBehaviour
 			currentEnergy = Mathf.Min(maxEnergy, currentEnergy);
 		}
 
-		UpdateEnergyBar();
-	}
-
-	private void UpdateEnergyBar() {
-		//If currentEnergy is 0, it throws an Invalid AABB inAABB error
-		energyBar.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, Mathf.Max(currentEnergy, 1) * sizePerUnit);
+		SetEnergyBarSize?.Invoke(maxEnergy, currentEnergy);
 	}
 
 	private void OutOfEnergy() {

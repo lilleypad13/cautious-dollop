@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class RootCtrl : MonoBehaviour
 {
+	public static Action GameWin;
+	public static Action GameLose;
+
 	public InputData data;
 	public float segmentLength;
 	public float growthSpeed;
@@ -57,7 +61,7 @@ public class RootCtrl : MonoBehaviour
 					root.EnableGrowth(false);
 					localSegmentsBetween = BranchRange(root.Depth);
 					if (root.transform.parent.childCount >= localSegmentsBetween.x) {
-						if (Random.Range(0f, 1f) <= BranchChance(localSegmentsBetween, root.transform.parent.childCount)) {
+						if (UnityEngine.Random.Range(0f, 1f) <= BranchChance(localSegmentsBetween, root.transform.parent.childCount)) {
 							CreateBranches(root, tempList);
 						} else {
 							tempList.Add(CreateSegment(root));
@@ -77,16 +81,18 @@ public class RootCtrl : MonoBehaviour
 
 	private void LoseGame() {
 		Debug.Log("You Lose!");
+		GameLose?.Invoke();
 		gameOver = true;
 	}
 
 	private void WinGame() {
 		Debug.Log("You Win!");
+		GameWin?.Invoke();
 		gameOver = true;
 	}
 
 	private RootSegment CreateFirstSegment(Vector3 startPos) {
-		float angle = Random.Range(-angleVariance, angleVariance);
+		float angle = UnityEngine.Random.Range(-angleVariance, angleVariance);
 		RootSegment newSegment = Instantiate(segmentPrefab,
 			startPos,
 			Quaternion.AngleAxis(angle, Vector3.forward),
@@ -100,7 +106,7 @@ public class RootCtrl : MonoBehaviour
 	}
 
 	private RootSegment CreateSegment(RootSegment parent) {
-		float angle = Random.Range(-angleVariance, angleVariance);
+		float angle = UnityEngine.Random.Range(-angleVariance, angleVariance);
 		RootSegment newSegment = Instantiate(segmentPrefab,
 			parent.tip.position,
 			Quaternion.Euler(Quaternion.AngleAxis(angle, parent.transform.forward).eulerAngles + parent.transform.eulerAngles),
@@ -111,7 +117,7 @@ public class RootCtrl : MonoBehaviour
 	}
 
 	private void CreateBranches(RootSegment parent, List<RootSegment> addList) {
-		float angle = Random.Range(branchAngleVarianceMin, branchAngleVarianceMax);
+		float angle = UnityEngine.Random.Range(branchAngleVarianceMin, branchAngleVarianceMax);
 		RootSegment branch1 = Instantiate(segmentPrefab,
 			parent.tip.position,
 			Quaternion.Euler(Quaternion.AngleAxis(angle, parent.transform.forward).eulerAngles + parent.transform.eulerAngles),

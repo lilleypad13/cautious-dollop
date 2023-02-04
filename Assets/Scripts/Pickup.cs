@@ -7,10 +7,17 @@ public class Pickup : MonoBehaviour
 {
 	public static Action PickupCollected;
 
+	public Animator anim;
+
+	private bool hasBeenCollected = false;
+
 	private void OnTriggerEnter2D(Collider2D collision) {
-		if (collision.CompareTag("Root")) {
+		if (!hasBeenCollected && collision.CompareTag("Root")) {
+			hasBeenCollected = true;
 			PickupCollected?.Invoke();
-			Destroy(gameObject);
+			Collider2D col = GetComponent<Collider2D>();
+			if(col != null) { Destroy(col); }
+			anim.SetTrigger("ToOff");
 		}
 	}
 }

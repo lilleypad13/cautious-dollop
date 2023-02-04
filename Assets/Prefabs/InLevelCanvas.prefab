@@ -878,7 +878,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 15, y: 15}
+  m_SizeDelta: {x: 500, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6864593827232888208
 CanvasRenderer:
@@ -1849,6 +1849,7 @@ GameObject:
   - component: {fileID: 6864593828273117967}
   - component: {fileID: 6864593828273117966}
   - component: {fileID: 6864593828273117953}
+  - component: {fileID: 5595832701705004308}
   m_Layer: 5
   m_Name: InLevelCanvas
   m_TagString: Untagged
@@ -1939,6 +1940,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5595832701705004308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6864593828273117955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c48d64c4bee91b64697503d9d281bc8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hudAnim: {fileID: 6864593827104838051}
+  endLevelAnim: {fileID: 2739879951884937817}
+  barHolder: {fileID: 6864593828239419415}
+  barFill: {fileID: 6864593827232888210}
 --- !u!1 &8790094893508784753
 GameObject:
   m_ObjectHideFlags: 0
