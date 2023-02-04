@@ -13,14 +13,16 @@ MonoBehaviour:
   m_Name: InputData
   m_EditorClassIdentifier: 
   standardInput:
-    radius: 1.1
+    radius: 1
     speedIncrease: 0.25
     speedDecrease: 0
     curveLimit: 25
     curveSpeed: 0.75
+    color: {r: 0.972549, g: 0.9529412, b: 0.54509807, a: 0.25490198}
   focusedInput:
     radius: 0.5
     speedIncrease: 0.6
     speedDecrease: 0.5
     curveLimit: 30
     curveSpeed: 1.5
+    color: {r: 0.972549, g: 0.9529412, b: 0.54509807, a: 0.5019608}

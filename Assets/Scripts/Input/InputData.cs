@@ -10,6 +10,7 @@ public class InputParameters
 	[Range(0f, 1f)] public float speedDecrease;
 	public float curveLimit;
 	public float curveSpeed;
+	public Color color;
 }
 
 [CreateAssetMenu(fileName = "InputData", menuName = "ScriptableObjects/InputData", order = 0)]
