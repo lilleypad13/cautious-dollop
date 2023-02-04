@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a441f92f612509449334e387501e935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initializationBundle: {fileID: 0}
+  initializationBundle: {fileID: 11400000, guid: dc2daad520447a449bb148c7e6bf4d32, type: 2}
   currentlyLoadedBundle: {fileID: 0}
   PersistentSceneName: BootPersistent
 --- !u!114 &644390879

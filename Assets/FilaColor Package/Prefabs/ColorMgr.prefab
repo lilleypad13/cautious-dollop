@@ -1,0 +1,174 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4291945168609057893
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4291945168609057947}
+  - component: {fileID: 4291945168609057892}
+  m_Layer: 0
+  m_Name: ColorMgr
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4291945168609057947
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4291945168609057893}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4291945168609057892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4291945168609057893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cefd2348bff02344dae1ef2595c27b04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 1
+  errorColor: {r: 1, g: 0, b: 1, a: 1}
+  defaultPalette:
+    name: Default
+    description: The leaves are a healthy green in Summer
+    colorSet:
+    - color: {r: 0.854902, g: 0.96470594, b: 1, a: 1}
+      name: Sky
+      index: 0
+      id: 066744024a4376c48abb6da0c5f5653e
+    - color: {r: 0.74509805, g: 0.9215687, b: 0.9803922, a: 1}
+      name: Cloud
+      index: 1
+      id: 40a527c30e6ccca43a5a4eb6d7f69924
+    - color: {r: 0.34509805, g: 0.654902, b: 0.40784317, a: 1}
+      name: Tree
+      index: 2
+      id: 7d92f37f9c57f5e47a9fabc997edf31d
+    - color: {r: 0.1254902, g: 0.5764706, b: 0.27450982, a: 1}
+      name: Bush
+      index: 3
+      id: a5e5d133c1dcaea408d3b1554e9550ea
+    - color: {r: 0.6117647, g: 0.39607847, b: 0.3529412, a: 1}
+      name: Tree Trunks
+      index: 4
+      id: aad04901af727a0479826c4f5d606fcf
+    - color: {r: 0.4666667, g: 0.8431373, b: 0.5411765, a: 1}
+      name: Ground
+      index: 5
+      id: 9a9c736603324b747afcf53631729f65
+    - color: {r: 0.086507656, g: 0.2264151, b: 0.11419769, a: 1}
+      name: Text
+      index: 6
+      id: 03d6c47925d28a044a46bf5f5e77db3d
+  altPalettes:
+  - name: Spring
+    description: Flowers are blooming in bright colors
+    colorSet:
+    - color: {r: 1, g: 0.85490197, b: 0.9719172, a: 1}
+      name: Sky
+      index: 0
+      id: 066744024a4376c48abb6da0c5f5653e
+    - color: {r: 0.98039216, g: 0.74509805, b: 0.9408247, a: 1}
+      name: Cloud
+      index: 1
+      id: 40a527c30e6ccca43a5a4eb6d7f69924
+    - color: {r: 0.9150943, g: 0.42733178, b: 0.7946515, a: 1}
+      name: Tree
+      index: 2
+      id: 7d92f37f9c57f5e47a9fabc997edf31d
+    - color: {r: 0.8018868, g: 0.22316661, b: 0.6618737, a: 1}
+      name: Bush
+      index: 3
+      id: a5e5d133c1dcaea408d3b1554e9550ea
+    - color: {r: 0.3301887, g: 0.32557285, b: 0.10435208, a: 1}
+      name: Tree Trunks
+      index: 4
+      id: aad04901af727a0479826c4f5d606fcf
+    - color: {r: 0.8207547, g: 0.56910825, b: 0.75987244, a: 1}
+      name: Ground
+      index: 5
+      id: 9a9c736603324b747afcf53631729f65
+    - color: {r: 0.7924528, g: 0.03364185, b: 0.6925416, a: 1}
+      name: Text
+      index: 6
+      id: 03d6c47925d28a044a46bf5f5e77db3d
+  - name: Autumn
+    description: The leaves turn yellow, orange, red, and brown
+    colorSet:
+    - color: {r: 1, g: 0.948608, b: 0.85490197, a: 1}
+      name: Sky
+      index: 0
+      id: 066744024a4376c48abb6da0c5f5653e
+    - color: {r: 0.9339623, g: 0.83025485, b: 0.63879496, a: 1}
+      name: Cloud
+      index: 1
+      id: 40a527c30e6ccca43a5a4eb6d7f69924
+    - color: {r: 0.9433962, g: 0.54981625, b: 0.16464934, a: 1}
+      name: Tree
+      index: 2
+      id: 7d92f37f9c57f5e47a9fabc997edf31d
+    - color: {r: 0.8207547, g: 0.15766375, b: 0.08904416, a: 1}
+      name: Bush
+      index: 3
+      id: a5e5d133c1dcaea408d3b1554e9550ea
+    - color: {r: 0.509434, g: 0.28715736, b: 0.24270204, a: 1}
+      name: Tree Trunks
+      index: 4
+      id: aad04901af727a0479826c4f5d606fcf
+    - color: {r: 0.9150943, g: 0.5982682, b: 0.44459772, a: 1}
+      name: Ground
+      index: 5
+      id: 9a9c736603324b747afcf53631729f65
+    - color: {r: 0.38679248, g: 0.101091005, b: 0.06750623, a: 1}
+      name: Text
+      index: 6
+      id: 03d6c47925d28a044a46bf5f5e77db3d
+  - name: Winter
+    description: Everything is covered in snow
+    colorSet:
+    - color: {r: 0.85817903, g: 0.88697165, b: 0.8962264, a: 1}
+      name: Sky
+      index: 0
+      id: 066744024a4376c48abb6da0c5f5653e
+    - color: {r: 0.5518868, g: 0.8879717, b: 1, a: 1}
+      name: Cloud
+      index: 1
+      id: 40a527c30e6ccca43a5a4eb6d7f69924
+    - color: {r: 0.85098046, g: 0.9058824, b: 0.8588236, a: 1}
+      name: Tree
+      index: 2
+      id: 7d92f37f9c57f5e47a9fabc997edf31d
+    - color: {r: 0.8501246, g: 0.9056604, b: 0.8575282, a: 1}
+      name: Bush
+      index: 3
+      id: a5e5d133c1dcaea408d3b1554e9550ea
+    - color: {r: 0.33962262, g: 0.32226768, b: 0.3187967, a: 1}
+      name: Tree Trunks
+      index: 4
+      id: aad04901af727a0479826c4f5d606fcf
+    - color: {r: 0.86543256, g: 0.9811321, b: 0.9542062, a: 1}
+      name: Ground
+      index: 5
+      id: 9a9c736603324b747afcf53631729f65
+    - color: {r: 0.08530616, g: 0.12861925, b: 0.6698113, a: 1}
+      name: Text
+      index: 6
+      id: 03d6c47925d28a044a46bf5f5e77db3d
