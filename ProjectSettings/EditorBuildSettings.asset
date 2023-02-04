@@ -9,27 +9,24 @@ EditorBuildSettings:
     path: Assets/Scenes/BootPersistent.unity
     guid: e745e4cd26769104abafefca05ffa4df
   - enabled: 1
-    path: Assets/Scenes/SLilley/SLDevTesting.unity
-    guid: d9674552860e5cd46a2c2ef212db7655
-  - enabled: 1
-    path: Assets/Scenes/SLilley/TestOneA.unity
-    guid: 18c9296f99a70d34284731f42746dd8d
-  - enabled: 1
-    path: Assets/Scenes/SLilley/TestOneB.unity
-    guid: bb13954a4155898418870eb5c6a5e6d7
-  - enabled: 1
-    path: Assets/Scenes/Depricated_MainMenu.unity
-    guid: 2c28937fdd6d3c14eae6799557e00986
-  - enabled: 1
-    path: Assets/Scenes/LevelSelect.unity
-    guid: ee431bf31c51795438b5ccdc06c1bd31
-  - enabled: 1
-    path: Assets/Scenes/RootSandbox.unity
-    guid: 41881d3567ef8464890e87e43850ce01
-  - enabled: 1
     path: Assets/Scenes/MainMenu_Korth.unity
     guid: 248ea0317fd6d4c4c8f4e63cf17ef131
   - enabled: 1
     path: Assets/Scenes/LevelSelect_Korth.unity
     guid: 346637772b51a9840807dcb5cca4a73b
+  - enabled: 1
+    path: Assets/Scenes/LevelScenes/Level1.unity
+    guid: aecb81d5a3535dd44becff201e17a60a
+  - enabled: 1
+    path: Assets/Scenes/LevelScenes/Level2.unity
+    guid: 810945c1c08ea654493deedd28889407
+  - enabled: 1
+    path: Assets/Scenes/LevelScenes/Level3.unity
+    guid: 3436ad7fb539a494fba4618a44758563
+  - enabled: 1
+    path: Assets/Scenes/LevelScenes/Level4.unity
+    guid: e2f239e7c504bad4180879fddef59157
+  - enabled: 1
+    path: Assets/Scenes/LevelScenes/Level5.unity
+    guid: a2c8e2fe6ecf995449263e913b73101f
   m_configObjects: {}
