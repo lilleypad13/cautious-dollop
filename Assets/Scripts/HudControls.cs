@@ -7,6 +7,7 @@ public class HudControls : MonoBehaviour
 {
 	public static Action<bool> EnableHud;
 
+	public bool isLastLevel = false;
 	public Animator hudAnim;
 	public Animator endLevelAnim;
 	public RectTransform barHolder;
@@ -35,14 +36,18 @@ public class HudControls : MonoBehaviour
 	}
 
 	private void ShowHud(bool enable) {
+		Debug.Log($"Calling ShowHud({enable})");
 		hudAnim.SetBool("HudOn", enable);
 	}
 
 	private void ShowWinUI() {
+		ShowHud(false);
+		endLevelAnim.SetBool("IsLastLevel", isLastLevel);
 		endLevelAnim.SetTrigger("Win");
 	}
 
 	private void ShowLoseUI() {
+		ShowHud(false);
 		endLevelAnim.SetTrigger("Lose");
 	}
 
