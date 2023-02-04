@@ -2,9 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 public class RootCtrl : MonoBehaviour
 {
@@ -29,6 +26,8 @@ public class RootCtrl : MonoBehaviour
 
 	int nextBranch = 0;
 
+	private bool gameOver = false;
+
 	private void Start() {
 		currentInputParams = data.standardInput;
 		rootList.Add(CreateFirstSegment(transform.position));
@@ -43,40 +42,40 @@ public class RootCtrl : MonoBehaviour
 	}
 
 	private void Update() {
-		foreach (var root in rootList) {
-			if (RootInRange(root)) {
-				mod = 1 + currentInputParams.speedIncrease;
-				root.BendTowards(mousePos, currentInputParams.curveLimit, currentInputParams.curveSpeed);
-			} else {
-				mod = Mathf.Max(0f, 1 - currentInputParams.speedDecrease);
-			}
-
-			//if(mod > 1) {
-			//	root.rend.color = Color.red;
-			//} else if (mod == 1) {
-			//	root.rend.color = Color.white;
-			//} else {
-			//	root.rend.color = Color.blue;
-			//}
-
-			root.Length += growthSpeed * Time.deltaTime * mod;
-			if (root.Length >= segmentLength) {
-				root.EnableGrowth(false);
-				//root.rend.color = Color.white;
-				localSegmentsBetween = BranchRange(root.Depth);
-				if (root.transform.parent.childCount >= localSegmentsBetween.x) {
-					if (Random.Range(0f, 1f) <= BranchChance(localSegmentsBetween, root.transform.parent.childCount)) {
-						CreateBranches(root, tempList);
+		if (!gameOver) {
+			foreach (var root in rootList) {
+				if (RootInRange(root)) {
+					mod = 1 + currentInputParams.speedIncrease;
+					root.BendTowards(mousePos, currentInputParams.curveLimit, currentInputParams.curveSpeed);
+				} else {
+					mod = Mathf.Max(0f, 1 - currentInputParams.speedDecrease);
+				}
+				root.Length += growthSpeed * Time.deltaTime * mod;
+				if (root.Length >= segmentLength) {
+					root.EnableGrowth(false);
+					localSegmentsBetween = BranchRange(root.Depth);
+					if (root.transform.parent.childCount >= localSegmentsBetween.x) {
+						if (Random.Range(0f, 1f) <= BranchChance(localSegmentsBetween, root.transform.parent.childCount)) {
+							CreateBranches(root, tempList);
+						} else {
+							tempList.Add(CreateSegment(root));
+						}
 					} else {
 						tempList.Add(CreateSegment(root));
 					}
-				} else {
-					tempList.Add(CreateSegment(root));
 				}
 			}
+			rootList = rootList.Concat(tempList).Where(x => x.IsGrowing).ToList();
+			tempList.Clear();
+			if(rootList.Count == 0) {
+				LoseGame();
+			}
 		}
-		rootList = rootList.Concat(tempList).Where(x => x.IsGrowing).ToList();
-		tempList.Clear();
+	}
+
+	private void LoseGame() {
+		Debug.Log("You Lose!");
+		gameOver = true;
 	}
 
 	private RootSegment CreateFirstSegment(Vector3 startPos) {
@@ -85,6 +84,8 @@ public class RootCtrl : MonoBehaviour
 			startPos,
 			Quaternion.AngleAxis(angle, Vector3.forward),
 			BranchParent(nextBranch));
+		Collider2D col = newSegment.GetComponentInChildren<Collider2D>();
+		if (col != null) { Destroy(col); }
 		nextBranch++;
 		newSegment.SetInitialRotation(angle);
 		newSegment.Depth = 0;
@@ -169,26 +170,4 @@ public class RootCtrl : MonoBehaviour
 		float t = -(Vector2.Dot(v, u) / Vector2.Dot(v, v));
 		return Vector2.Lerp(endpointOne, endpointTwo, t);
 	}
-
-#if UNITY_EDITOR
-	[CustomEditor(typeof(RootCtrl))]
-	public class RootCtrlEditor : Editor
-	{
-		private RootCtrl script;
-
-		private void OnEnable() {
-			script = (RootCtrl)target;
-		}
-
-		private void OnSceneGUI() {
-			if(script.mousePos != null) {
-				float radius = script.currentInputParams.radius;
-				Handles.color = Color.black;
-				Handles.DrawSolidArc(script.mousePos, Vector3.forward, Vector3.up, 360, .1f);
-				Handles.color = Color.yellow;
-				Handles.DrawWireArc(script.mousePos, Vector3.forward, Vector3.up, 360, radius);
-			}
-		}
-	}
-#endif
 }

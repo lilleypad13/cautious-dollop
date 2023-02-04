@@ -14,7 +14,8 @@ public class RootSegment : MonoBehaviour
 	public float Angle { get { return currentAngle; } }
 
 	public SpriteRenderer rend;
-
+	public Color disabledColor;
+	public float colorChangeSpeed;
 	public Transform tip;
 	private bool isGrowing = true;
 	private float initialRot;
@@ -42,22 +43,19 @@ public class RootSegment : MonoBehaviour
 
 	public void EnableGrowth(bool enable) {
 		isGrowing = enable;
+		Collider2D col = GetComponentInChildren<Collider2D>();
+		if(col != null) { Destroy(col); }
 	}
-	
 
-	public static Vector3 DirFromAngle(float degrees, bool globalAngle, Transform relativeTo) {
-		if (!globalAngle) {
-			degrees += relativeTo.eulerAngles.z;
+	public void ChangeColor() {
+		StartCoroutine(DoChangeColor());
+	}
+
+	private IEnumerator DoChangeColor() {
+		Color initial = rend.color;
+		for(float t = 0; t <= 1; t += Time.deltaTime * colorChangeSpeed) {
+			rend.color = Color.Lerp(initial, disabledColor, t);
+			yield return null;
 		}
-		return new Vector3(Mathf.Sin(degrees * Mathf.Deg2Rad), Mathf.Cos(degrees * Mathf.Deg2Rad));
-	}
-
-	public static float AngleBetween(Vector3 center, Vector3 pointA, Vector3 pointB) {
-		float distCtoA = Vector3.Distance(center, pointA);
-		float distCtoB = Vector3.Distance(center, pointB);
-		float distAtoB = Vector3.Distance(pointA, pointB);
-		float numerator = Mathf.Pow(distCtoA, 2) + Mathf.Pow(distCtoB, 2) - Mathf.Pow(distAtoB, 2);
-		float denominator = 2 * distCtoA * distCtoB;
-		return Mathf.Acos(numerator / denominator) * Mathf.Rad2Deg;
 	}
 }
