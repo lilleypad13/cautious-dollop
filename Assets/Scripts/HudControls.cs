@@ -12,15 +12,21 @@ public class HudControls : MonoBehaviour
 	public RectTransform barHolder;
 	public RectTransform barFill;
 
+	public float waitTimeForHUD = 1.0f;
+
 	private void OnEnable() {
 		EnergyMgr.SetEnergyBarSize += ResizeBar;
 		RootCtrl.GameWin += ShowWinUI;
 		RootCtrl.GameLose += ShowLoseUI;
+
+		StartCoroutine(WaitToShowHUD());
 	}
 	private void OnDisable() {
 		EnergyMgr.SetEnergyBarSize -= ResizeBar;
 		RootCtrl.GameWin -= ShowWinUI;
 		RootCtrl.GameLose -= ShowLoseUI;
+
+		StopCoroutine(WaitToShowHUD());
 	}
 
 	private void ResizeBar(float maxValue, float currentValue) {
@@ -39,4 +45,10 @@ public class HudControls : MonoBehaviour
 	private void ShowLoseUI() {
 		endLevelAnim.SetTrigger("Lose");
 	}
+
+	private IEnumerator WaitToShowHUD()
+    {
+		yield return new WaitForSeconds(waitTimeForHUD);
+		ShowHud(true);
+    }
 }
