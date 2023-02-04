@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/SLilley/TestOneB.unity
     guid: bb13954a4155898418870eb5c6a5e6d7
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
+    path: Assets/Scenes/Depricated_MainMenu.unity
     guid: 2c28937fdd6d3c14eae6799557e00986
   - enabled: 1
     path: Assets/Scenes/LevelSelect.unity
@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RootSandbox.unity
     guid: 41881d3567ef8464890e87e43850ce01
+  - enabled: 1
+    path: Assets/Scenes/MainMenu_Korth.unity
+    guid: 248ea0317fd6d4c4c8f4e63cf17ef131
+  - enabled: 1
+    path: Assets/Scenes/LevelSelect_Korth.unity
+    guid: 346637772b51a9840807dcb5cca4a73b
   m_configObjects: {}

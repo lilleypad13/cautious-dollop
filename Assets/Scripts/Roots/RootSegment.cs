@@ -5,21 +5,37 @@ using UnityEngine;
 public class RootSegment : MonoBehaviour
 {
 	public float Length {
-		get { return transform.localScale.y; }
-		set { transform.localScale = new Vector3(transform.localScale.x, value, transform.localScale.z); }
+		get { return rend.size.y - overlapFactor; }
+		set {
+			if (isGrowing) {
+				tip.localPosition = new Vector3(tip.localPosition.x, -value + overlapFactor, tip.localPosition.z);
+				rend.size = new Vector2(rend.size.x, value + overlapFactor);
+				//rend.transform.localPosition = new Vector3(rend.transform.localPosition.x, -value, rend.transform.localPosition.z);
+				if(coll != null) {
+					coll.size = new Vector2(1, value);
+					coll.offset = new Vector2(coll.offset.x, -value / 2f);
+				}
+			}
+		}
 	}
 
 	public bool IsGrowing { get { return isGrowing; } }
 	public int Depth { get; set; }
 	public float Angle { get { return currentAngle; } }
 
+	public float overlapFactor = 0.05f;
 	public SpriteRenderer rend;
+	public BoxCollider2D coll;
 	public Color disabledColor;
 	public float colorChangeSpeed;
 	public Transform tip;
 	private bool isGrowing = true;
 	private float initialRot;
 	private float currentAngle;
+
+	private void Awake() {
+		Length = overlapFactor;
+	}
 
 	public void SetInitialRotation(float angle) {
 		initialRot = angle;
@@ -43,8 +59,7 @@ public class RootSegment : MonoBehaviour
 
 	public void EnableGrowth(bool enable) {
 		isGrowing = enable;
-		Collider2D col = GetComponentInChildren<Collider2D>();
-		if(col != null) { Destroy(col); }
+		if(coll != null) { Destroy(coll); }
 	}
 
 	public void ChangeColor() {
