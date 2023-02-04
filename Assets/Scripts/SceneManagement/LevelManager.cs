@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    //public SceneBundle initializationBundle;
+    public SceneBundle initializationBundle;
     public SceneBundle currentlyLoadedBundle;
     public static LevelManager instance;
 
@@ -21,6 +21,10 @@ public class LevelManager : MonoBehaviour
         instance = this;
     }
 
+    private void Start()
+    {
+        LoadSceneBundle(initializationBundle);
+    }
 
 
     public static void LoadSceneBundle(SceneBundle sceneBundle)
