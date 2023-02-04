@@ -26,6 +26,9 @@ public class PlayerDataManager : MonoBehaviour
 
     public void UpdateLevelProgress(int highestLevel)
     {
-        currentLevelProgress = highestLevel;
+        if(highestLevel > currentLevelProgress)
+        {
+            currentLevelProgress = highestLevel;
+        }
     }
 }
