@@ -15,3 +15,4 @@ MonoBehaviour:
   scenesToLoad:
   - TestOneA
   - TestOneB
+  sceneToSetActive: TestOneA

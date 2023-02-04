@@ -51,6 +51,9 @@ public class LevelManager : MonoBehaviour
         yield return LoadNextScenes(sceneBundle);
         yield return null;
 
+        // Set proper scene as Active
+        SetProperSceneActive(sceneBundle);
+
         currentlyLoadedBundle = sceneBundle;
         yield return null;
     }
@@ -121,6 +124,11 @@ public class LevelManager : MonoBehaviour
             yield return null;
 
         } while (!loadFinished);
+    }
+
+    private void SetProperSceneActive(SceneBundle sceneBundle)
+    {
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneBundle.sceneToSetActive));
     }
 
 }

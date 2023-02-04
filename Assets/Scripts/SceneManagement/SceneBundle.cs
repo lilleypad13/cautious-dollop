@@ -6,7 +6,7 @@ using UnityEngine;
 public class SceneBundle : ScriptableObject
 {
     public List<string> scenesToLoad;
-    //public string sceneToSetActive;
+    public string sceneToSetActive;
 
 
 }
