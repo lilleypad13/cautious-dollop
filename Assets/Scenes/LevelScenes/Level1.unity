@@ -11761,7 +11761,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5417613090853287371, guid: fd28e6a185bb12e4fa15288b9df2e3b9, type: 3}
       propertyPath: completingThisLevelProgression
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5417613091428059121, guid: fd28e6a185bb12e4fa15288b9df2e3b9, type: 3}
       propertyPath: sceneAnimator
