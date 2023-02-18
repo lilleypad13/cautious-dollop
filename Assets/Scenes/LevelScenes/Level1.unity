@@ -11820,24 +11820,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 163293622}
     m_Modifications:
     - target: {fileID: 7282450562252371632, guid: 9c7b9719d5a11ca43b1260d83c219250, type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
-    - target: {fileID: 7282450562252371632, guid: 9c7b9719d5a11ca43b1260d83c219250, type: 3}
       propertyPath: m_Name
       value: Root
-      objectReference: {fileID: 0}
-    - target: {fileID: 7282450562252371632, guid: 9c7b9719d5a11ca43b1260d83c219250, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7282450562252371633, guid: 9c7b9719d5a11ca43b1260d83c219250, type: 3}
-      propertyPath: growthSpeed
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7282450562252371633, guid: 9c7b9719d5a11ca43b1260d83c219250, type: 3}
-      propertyPath: slowUnfocused
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7282450562252371638, guid: 9c7b9719d5a11ca43b1260d83c219250, type: 3}
       propertyPath: m_RootOrder

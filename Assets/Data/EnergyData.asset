@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 644a4bf302bbc1d489d1766c1de3609e, type: 3}
   m_Name: EnergyData
   m_EditorClassIdentifier: 
-  maxEnergy: 100
-  drainRate: 15
-  refillRate: 8
+  maxEnergy: 50
+  drainRate: 12
+  refillRate: 3

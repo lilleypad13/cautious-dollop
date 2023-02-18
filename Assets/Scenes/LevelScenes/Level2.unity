@@ -11823,18 +11823,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Root
       objectReference: {fileID: 0}
-    - target: {fileID: 7282450562252371632, guid: 9c7b9719d5a11ca43b1260d83c219250, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7282450562252371633, guid: 9c7b9719d5a11ca43b1260d83c219250, type: 3}
-      propertyPath: growthSpeed
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7282450562252371633, guid: 9c7b9719d5a11ca43b1260d83c219250, type: 3}
-      propertyPath: slowUnfocused
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7282450562252371638, guid: 9c7b9719d5a11ca43b1260d83c219250, type: 3}
       propertyPath: m_RootOrder
       value: 0
